@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        /* https://projects.verou.me/css3patterns/#blueprint-grid*/
+            .CoordinateFixed{
+                position: fixed;
+                top: 100px;
+                right: 300px;
+                font-size: large;
+            }
+            #cursor{
+                position: absolute;
+                width: 1px;
+                height: 1px; 
+                border: 2px solid #000;
+                box-sizing: border-box;
+                transition: 0.1s;
+                transform: translate(-50%,-50%);
+                border-radius: 50%;
+                pointer-events: none;
+                
+            }
+            #CoordInfo{
+                font-size: large;
+            }
+            .gridLine{
+                background-color: grey;
+                background-image: linear-gradient(white 2px, transparent 2px),
+                    linear-gradient(90deg, white 2px, transparent 2px),
+                    linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+                background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+                background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div onmousemove="showCoords(event)" class="gridLine" >
+            <img src="img/Test2.jpg" style="width: 100%;opacity: 0.5;">
+        </div>
+        <div id="cursor">
+            <p id="CoordInfo"></p>
+        </div>
+        <script>
+            var cursor = document.getElementById(`cursor`);
+            document.addEventListener('mousemove',function(e){
+                var x = e.clientX;
+                var y = e.clientY;
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+            });
+            function showCoords(event){
+                var x = event.clientX;
+                var y = event.clientY;
+                var coor = "(" + x +"," + y +")";
+                document.getElementById("CoordInfo").innerHTML = coor;
+            }
+            
+        </script>
+    </body>
+</html>
